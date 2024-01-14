@@ -2,54 +2,51 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello Prep2 World!");
+        // Ask the user for their grade percentage
+        Console.Write("Enter your grade percentage: ");
+        string userInput = Console.ReadLine();
+
+        int gradePercentage = int.Parse(userInput);
+
+        // Initialize the letter variable
+        char letter;
+
+        // Determine the letter grade based on the percentage
+        if (gradePercentage >= 90)
+        {
+            letter = 'A';
+        }
+        else if (gradePercentage >= 80)
+        {
+            letter = 'B';
+        }
+        else if (gradePercentage >= 70)
+        {
+            letter = 'C';
+        }
+        else if (gradePercentage >= 60)
+        {
+            letter = 'D';
+        }
+        else
+        {
+            letter = 'F';
+        }
+
+        // Display the letter grade
+        Console.WriteLine($"Your letter grade is: {letter}");
+
+        // Check if the user passed the course and display a message
+        if (gradePercentage >= 70)
+        {
+            Console.WriteLine("Congratulations! You passed the course.");
+        }
+        else
+        {
+            Console.WriteLine("Encourage for next time. Keep trying!");
+        }
     }
 }
-
-//Primitive types
-int i;
-long l;
-float f;
-double d;
-char c;
-string s;
-byte b;
-bool b2;
-
-
-//Variables
-int myCount = 4;
-string aName = "bob";
-myCount = "bob"; //can't do this
-
-//var
-var anotherCount = 4;
-anotherCount = 3.4; //can't do this already set as integer (not floating point)
-
-//Printing Variables
-Console.Write("What's your age?");
-
-//ReadLine
-var age = Console.ReadLine();
-Console.Write
-System.Console.WriteLine($"My age is {age}."); //(cw + tab) // $ let's the compiler know that you have embedded values
-System.Console.WriteLine("My age is" + age + ".");
-
-//Converting Variables
-int age = int.Parse(ageString);
-
-//Conditionals
-if (age < 18)
-{
-    System.Console.WriteLine("You're a minor"); //contitional only applys to net line unless you do blocks (uses the curly brackets {})
-    System.Console.WriteLine("Another string to print");
-}
-else
-{
-    System.Console.WriteLine("You are old");
-}
-
-
 
