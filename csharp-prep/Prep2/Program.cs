@@ -33,7 +33,7 @@ Console.Write("What's your age?");
 
 //ReadLine
 var age = Console.ReadLine();
-Console.Write 
+Console.Write
 System.Console.WriteLine($"My age is {age}."); //(cw + tab) // $ let's the compiler know that you have embedded values
 System.Console.WriteLine("My age is" + age + ".");
 
