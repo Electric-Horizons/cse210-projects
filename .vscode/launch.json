@@ -1,9 +1,6 @@
-
 {
     "version": "0.2.0",
     "configurations": [
-        
-
         {
             "name": "Sandbox Project",
             "type": "coreclr",
@@ -16,7 +13,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "C# Prep 1",
             "type": "coreclr",
@@ -29,7 +25,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "C# Prep 2",
             "type": "coreclr",
@@ -42,7 +37,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "C# Prep 3",
             "type": "coreclr",
@@ -55,7 +49,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "C# Prep 4",
             "type": "coreclr",
@@ -68,7 +61,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "C# Prep 5",
             "type": "coreclr",
@@ -81,7 +73,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Learning 02 (Resume)",
             "type": "coreclr",
@@ -94,7 +85,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Learning 03 (Fraction)",
             "type": "coreclr",
@@ -107,7 +97,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Learning 04 (Homework)",
             "type": "coreclr",
@@ -120,7 +109,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Learning 05 (Shapes)",
             "type": "coreclr",
@@ -133,7 +121,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Develop 02 (Journal)",
             "type": "coreclr",
@@ -146,7 +133,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Develop 03 (Scripture Memorizer)",
             "type": "coreclr",
@@ -159,7 +145,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Develop 04 (Mindfulness)",
             "type": "coreclr",
@@ -172,7 +157,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Develop 05 (Goal Tracker)",
             "type": "coreclr",
@@ -185,7 +169,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Final Project (Open ended)",
             "type": "coreclr",
@@ -198,7 +181,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Foundation 1 (YouTube)",
             "type": "coreclr",
@@ -211,7 +193,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Foundation 2 (Products)",
             "type": "coreclr",
@@ -224,7 +205,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Foundation 3 (Events)",
             "type": "coreclr",
@@ -237,7 +217,6 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
         {
             "name": "Foundation 4 (Exercise)",
             "type": "coreclr",
@@ -250,6 +229,5 @@
             "internalConsoleOptions": "neverOpen",
             "stopAtEntry": false
         },
-
     ]
 }
