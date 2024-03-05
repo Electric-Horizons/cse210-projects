@@ -1,36 +1,59 @@
+using System;
+using System.Threading;
+
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to the Mindfulness App!");
-        Console.WriteLine("Choose an activity:");
-        Console.WriteLine("1. Breathing Activity");
-        Console.WriteLine("2. Reflection Activity");
-        Console.WriteLine("3. Listing Activity");
+        bool exit = false;
 
-        int choice = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter duration (in seconds):");
-        int duration = int.Parse(Console.ReadLine());
-
-        MindfulnessActivity activity = null;
-
-        switch (choice)
+        while (!exit)
         {
-            case 1:
-                activity = new BreathingActivity(duration);
-                break;
-            case 2:
-                activity = new ReflectionActivity(duration);
-                break;
-            case 3:
-                activity = new ListingActivity(duration);
-                break;
-            default:
-                Console.WriteLine("Invalid choice!");
-                return;
-        }
+            Console.WriteLine("Welcome to the Mindfulness App!");
+            Console.WriteLine("Choose an activity:");
+            Console.WriteLine("1. Breathing Activity");
+            Console.WriteLine("2. Reflection Activity");
+            Console.WriteLine("3. Listing Activity");
+            Console.WriteLine("4. Exit");
 
-        activity.Run();
+            int choice = int.Parse(Console.ReadLine());
+
+            if (choice == 4)
+            {
+                exit = true;
+                continue; // Skip to the next iteration of the loop
+            }
+
+            Console.WriteLine("Enter duration (in seconds):");
+            int duration = int.Parse(Console.ReadLine());
+
+            DateTime startTime = DateTime.Now;
+            DateTime futureTime = startTime.AddSeconds(duration);
+
+            switch (choice)
+            {
+                case 1:
+                    {
+                        var activity = new BreathingActivity(duration);
+                        activity.Run();
+                        break;
+                    }
+                case 2:
+                    {
+                        var activity = new ReflectionActivity(duration);
+                        activity.Run();
+                        break;
+                    }
+                case 3:
+                    {
+                        var activity = new ListingActivity(duration);
+                        activity.Run();
+                        break;
+                    }
+                default:
+                    Console.WriteLine("Invalid choice!");
+                    break;
+            }
+        }
     }
 }

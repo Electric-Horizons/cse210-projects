@@ -1,79 +1,91 @@
-public abstract class MindfulnessActivity
+public class MindfulnessActivity
 {
     protected int duration;
+    protected DateTime futureTime;
 
     public MindfulnessActivity(int duration)
     {
         this.duration = duration;
     }
 
+    protected void StartActivity()
+    {
+        DateTime startTime = DateTime.Now;
+        futureTime = startTime.AddSeconds(duration);
+    }
+
+    protected bool AmIDone()
+    {
+        return DateTime.Now > futureTime;
+    }
+
     // Common starting message
-    public virtual void Start()
+
+    protected void startcountdown(int duration)
+    {
+        while (duration >= 0)
+        {
+            Console.Write($"{duration--}");
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+    }
+
+    protected void StartSpinner(int duration)
     {
         Console.WriteLine("Get ready to start...");
-        Thread.Sleep(2000); // Pause for 2 seconds
+        List<string> animationStrings = new List<string>();
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+        animationStrings.Add("|");
+        animationStrings.Add("/");
+        animationStrings.Add("-");
+        animationStrings.Add("\\");
+
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(duration);
+
+        int i = 0;
+
+        while (DateTime.Now < futureTime)
+        {
+            string s = animationStrings[i];
+            Console.Write(s);
+            Thread.Sleep(300);
+            Console.Write("\b \b");
+
+            i++;
+
+            if (i >= animationStrings.Count)
+            {
+                i = 0;
+            }
+            // Thread.Sleep(2000); // Pause for 2 seconds
+        }
     }
+    // {
+    //     Console.WriteLine("Get ready to start...");
+    //     List<string> animationStrings = new List<string> { "|", "/", "-", "\\" };
+
+    //     int i = 0;
+
+    //     while (DateTime.Now < futureTime)
+    //     {
+    //         string s = animationStrings[i];
+    //         Console.Write(s);
+    //         Thread.Sleep(100);
+    //         Console.Write("\b   \b");
+
+    //         i = (i + 1) % animationStrings.Count;
+    //     }
+    // }
 
     // Common ending message
-    public virtual void End(string name)
+    public void End(string name)
     {
-        Console.WriteLine($"Well done! You have completed the {name} activity for {duration} seconds.");
-        Thread.Sleep(2000); // Pause for 2 seconds
+        Console.WriteLine($"\n\nWell done! You have completed the {name} activity for {duration} seconds.");
+        StartSpinner(5);
     }
-
-    // Method to display spinner animation during pauses
-    protected void ShowSpinner(int seconds)
-    {
-        for (int i = 0; i < seconds; i++)
-        {
-            Console.Write(". "); // Simple spinner animation
-            Thread.Sleep(1000); // Pause for 1 second
-        }
-    }
-
-    // Method to run the activity
-    public abstract void Run();
-}
-
-// Breathing Activity class
-public class BreathingActivity : MindfulnessActivity
-{
-    public BreathingActivity(int duration) : base(duration) { }
-
-    public override void Run()
-    {
-        Start();
-        Console.WriteLine("This activity will help you relax by guiding you through breathing exercises. Focus on your breath...");
-        for (int i = 0; i < duration; i++)
-        {
-            Console.WriteLine("Breathe in...");
-            ShowSpinner(3);
-            Console.WriteLine("Breathe out...");
-            ShowSpinner(3);
-        }
-        End("breathing");
-    }
-}
-
-// Reflection Activity class
-public class ReflectionActivity : MindfulnessActivity
-{
-    private string[] prompts = {
-        "Think of a time when you stood up for someone else.",
-        "Think of a time when you did something really difficult.",
-        "Think of a time when you helped someone in need.",
-        "Think of a time when you did something truly selfless."
-    };
-
-    private string[] questions = {
-        "Why was this experience meaningful to you?",
-        "Have you ever done anything like this before?",
-        "How did you get started?",
-        "How did you feel when it was complete?",
-        "What made this time different than other times when you were not as successful?",
-        "What is your favorite thing about this experience?",
-        "What could you learn from this experience that applies to other situations?",
-        "What did you learn about yourself through this experience?",
-        "How can you keep this experience in mind in the future?"
-    };
 }

@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class ReflectionActivity : MindfulnessActivity
 {
     private string[] prompts = {
@@ -21,18 +23,45 @@ public class ReflectionActivity : MindfulnessActivity
 
     public ReflectionActivity(int duration) : base(duration) { }
 
-    public override void Run()
+    public void Run()
     {
-        Start();
+        StartActivity();
         Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience.");
+        StartSpinner(3);
         Random rnd = new Random();
+
         string prompt = prompts[rnd.Next(prompts.Length)];
+        Console.Write("Prompt:");
         Console.WriteLine(prompt);
-        foreach (string question in questions)
+        Console.ReadLine();
+
+        // Do breathing stuff
+        StartActivity();
+        while (!AmIDone())
         {
-            Console.WriteLine(question);
-            ShowSpinner(5);
+            Console.WriteLine("\nQuestions:");
+            foreach (string question in questions)
+            {
+                Console.WriteLine(question);
+                Console.ReadLine();
+            }
         }
         End("reflection");
     }
 }
+// Find a way to loop through this later and grab a new question.
+//   StartActivity();
+//         int questionsAnswered = 0;
+//         while (questionsAnswered < questions.Length)
+//         {
+//             Console.WriteLine("\nQuestions:");
+//             foreach (string question in questions)
+//             {
+//                 Console.WriteLine(question);
+//                 StartSpinner(5);
+//                 Console.ReadLine();
+//                 questionsAnswered++;
+//             }
+//         }
+
+//         End("reflection");

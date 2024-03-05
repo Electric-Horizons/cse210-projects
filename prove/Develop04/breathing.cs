@@ -2,17 +2,20 @@ public class BreathingActivity : MindfulnessActivity
 {
     public BreathingActivity(int duration) : base(duration) { }
 
-    public override void Run()
+    public void Run()
     {
-        Start();
-        Console.WriteLine("This activity will help you relax by guiding you through breathing exercises. Focus on your breath...");
-        for (int i = 0; i < duration; i++)
+        Console.Write("\nThis activity will help you relax by guiding you through breathing exercises. Focus on your breath...");
+        StartSpinner(5);
+
+        StartActivity();
+        while (!AmIDone())
         {
-            Console.WriteLine("Breathe in...");
-            ShowSpinner(3);
-            Console.WriteLine("Breathe out...");
-            ShowSpinner(3);
+            Console.Write("\nBreathe in...");
+            startcountdown(3);
+            Console.Write("\nBreathe out...");
+            startcountdown(3);
         }
+        StartSpinner(5);
         End("breathing");
     }
 }
