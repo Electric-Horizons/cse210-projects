@@ -5,26 +5,29 @@ using System.IO;
 class Program
 {
     private static List<Goal> goals = new List<Goal>();
-    private static string fileName = "goals.txt";
-    private static int completedGoalsCount = 0;
-
-    public abstract bool Complete();
-
 
     static void Main(string[] args)
     {
-        LoadGoalsFromFile();
+        string defaultFileName = "goals.txt";
+        string fileName;
+
+        Console.WriteLine("\nWelcome to the Goal App!");
+        Console.WriteLine("Enter filename to create (default: goals.txt):");
+        fileName = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            fileName = defaultFileName;
+        }
 
         while (true)
         {
-            Console.WriteLine("Welcome to the Goal App!");
             Console.WriteLine("Choose an activity:");
             Console.WriteLine("1. Create a Goal");
-            Console.WriteLine("2. Display Goals");
-            Console.WriteLine("3. Record Goals"); // Assuming Record Goals is a separate feature
+            Console.WriteLine("2. List Goals");
+            Console.WriteLine("3. Save Goals");
             Console.WriteLine("4. Load Goals");
-            Console.WriteLine("5. Save Goals");
-            Console.WriteLine("7. Exit");
+            Console.WriteLine("5. Record Goals");
+            Console.WriteLine("6. Exit");
 
             int selection = int.Parse(Console.ReadLine());
 
@@ -37,14 +40,14 @@ class Program
                     DisplayGoals();
                     break;
                 case 3:
-                    RecordGoals();
-                    break;
-                case 4:
-                    LoadGoalsFromFile();
-                    break;
-                case 5:
                     FileManager.SaveGoalsToFile(fileName, goals);
                     Console.WriteLine("Goals saved successfully.");
+                    break;
+                case 4:
+                    goals = FileManager.LoadGoalsFromFile(fileName);
+                    break;
+                case 5:
+                    RecordGoals();
                     break;
                 case 6:
                     FileManager.SaveGoalsToFile(fileName, goals);
@@ -57,29 +60,49 @@ class Program
         }
     }
 
-    static void LoadGoalsFromFile()
-    {
-        try
-        {
-            goals = FileManager.LoadGoalsFromFile(fileName);
-            Console.WriteLine("Goals loaded from file successfully.");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error loading goals from file: " + ex.Message);
-        }
-    }
-
     static void DisplayGoals()
     {
-        Console.WriteLine("Current Goals:");
+        int totalScore = 0;
+        Console.WriteLine("Current Goals:\n");
         foreach (Goal goal in goals)
         {
             goal.Display();
+            totalScore += goal.Score;
         }
+        Console.WriteLine($"Total Score: {totalScore}");
     }
 
-    static void GoalCreation()
+    static void RecordGoals()
+    {
+        Console.WriteLine("Record Goals:");
+        for (var i = 0; i < goals.Count; ++i)
+        {
+            var goal = goals[i];
+            Console.Write((i + 1) + ": ");
+            goal.Display();
+        }
+
+        Console.WriteLine("Which goal would you like to mark as complete?");
+        int selection = int.Parse(Console.ReadLine());
+
+        int pointsEarned = goals[selection - 1].MarkComplete(); // Adjust selection to account for starting index at 1
+        Console.WriteLine($"Goal marked as complete. You earned {pointsEarned} points.");
+
+        // Display total points information
+        DisplayTotalPoints();
+    }
+
+    static void DisplayTotalPoints()
+    {
+        int totalPoints = 0;
+        foreach (Goal goal in goals)
+        {
+            totalPoints += goal.Points;
+        }
+        Console.WriteLine($"Total Points: {totalPoints}");
+    }
+
+    static void CreateGoal()
     {
         Console.WriteLine("\nSelect Goal Type:");
         Console.WriteLine("1. Simple Goal");
@@ -91,16 +114,13 @@ class Program
         switch (goalType)
         {
             case 1:
-                CreateSimpleGoal();
                 goals.Add(new SimpleGoal());
                 break;
             case 2:
-                CreateEternalGoal();
-                goals.Add(new EternalGoal());
+                goals.Add(new Eternal());
                 break;
             case 3:
-                CreateChecklistGoal();
-                goals.Add(new ChecklistGoal());
+                goals.Add(new Checklist());
                 break;
             default:
                 Console.WriteLine("Invalid goal type.");

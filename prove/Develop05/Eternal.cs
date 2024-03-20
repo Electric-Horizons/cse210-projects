@@ -18,6 +18,7 @@ public class Eternal : Goal
 
     public override void Display()
     {
-        Console.WriteLine($"Name: {Name}, Points: {Points}, Description: {Description}, Eternal Goal");
+        var done = Complete() ? "X" : " ";
+        Console.WriteLine($"[{done}] {Name}, {Points}, ({Description}), Eternal Goal");
     }
-}
+}         

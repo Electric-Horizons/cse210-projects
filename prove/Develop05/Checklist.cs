@@ -14,22 +14,33 @@ public class Checklist : Goal
         timesCompleted = 0;
     }
 
+    public override int MarkComplete()
+    {
+        if (timesCompleted < targetCount)
+        {
+            timesCompleted++;
+            if (timesCompleted == targetCount)
+            {
+                Score += (Points + bonusPoints); // Increment score by points + bonus when completed
+                return Points + bonusPoints;
+            }
+            else
+            {
+                Score += Points; // Increment score by points
+                return Points;
+            }
+        }
+        return 0;
+    }
+
     public override bool Complete()
     {
-    if (timesCompleted < targetCount)
-    {
-        timesCompleted++;
-        if (timesCompleted == targetCount)
-        {
-            completedGoalsCount++; // Increment completed goals count
-            return true;
-        }
-    }
-    return false;
+        return timesCompleted == targetCount;
     }
 
     public override void Display()
     {
-        Console.WriteLine($"Name: {Name}, Points: {Points}, Description: {Description}, Checklist Goal");
+        var done = Complete() ? "X" : " ";
+        Console.WriteLine($"[{done}] {Name}, {Points}, ({Description}), Checklist Goal ({timesCompleted}/{targetCount} done)");
     }
-}
+}            

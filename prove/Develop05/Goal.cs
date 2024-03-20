@@ -3,8 +3,9 @@ public abstract class Goal
     public string Name;
     public int Points;
     public string Description;
+    public int Score;
 
-    public CreateGoal()
+    public Goal()
     {
         Console.WriteLine("Enter goal name:");
         Name = Console.ReadLine();
@@ -12,12 +13,10 @@ public abstract class Goal
         Points = int.Parse(Console.ReadLine());
         Console.WriteLine("Enter goal description:");
         Description = Console.ReadLine();
+        Score = 0;
     }
 
     public abstract bool Complete();
-    //public abstract int Complete();
-
-    public abstract bool MarkComplete();
-    //public abstract int MarkComplete();
+    public abstract int MarkComplete();
     public abstract void Display();
 }

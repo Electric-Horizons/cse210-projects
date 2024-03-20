@@ -10,15 +10,15 @@ public static class FileManager
                 {
                     if (goal is SimpleGoal simpleGoal)
                     {
-                        writer.WriteLine($"SimpleGoal,{simpleGoal.Name},{simpleGoal.Points},{simpleGoal.Description}");
+                        writer.WriteLine($"SimpleGoal,{simpleGoal.Name},{simpleGoal.Points},{simpleGoal.Description},{simpleGoal.Score}");
                     }
                     else if (goal is Eternal eternalGoal)
                     {
-                        writer.WriteLine($"Eternal,{eternalGoal.Name},{eternalGoal.Points},{eternalGoal.Description}");
+                        writer.WriteLine($"Eternal,{eternalGoal.Name},{eternalGoal.Points},{eternalGoal.Description},{eternalGoal.Score}");
                     }
                     else if (goal is Checklist checklistGoal)
                     {
-                        writer.WriteLine($"Checklist,{checklistGoal.Name},{checklistGoal.Points},{checklistGoal.Description}");
+                        writer.WriteLine($"Checklist,{checklistGoal.Name},{checklistGoal.Points},{checklistGoal.Description},{checklistGoal.Score}");
                     }
                 }
             }
@@ -39,23 +39,24 @@ public static class FileManager
             foreach (string line in lines)
             {
                 string[] parts = line.Split(',');
-                if (parts.Length >= 4)
+                if (parts.Length >= 5)
                 {
                     string type = parts[0];
                     string name = parts[1];
                     int points = int.Parse(parts[2]);
                     string description = parts[3];
+                    int score = int.Parse(parts[4]);
 
                     switch (type)
                     {
                         case "SimpleGoal":
-                            loadedGoals.Add(new SimpleGoal(name, points, description));
+                            loadedGoals.Add(new SimpleGoal());
                             break;
                         case "Eternal":
-                            loadedGoals.Add(new Eternal(name, points, description));
+                            loadedGoals.Add(new Eternal());
                             break;
                         case "Checklist":
-                            loadedGoals.Add(new Checklist(name, points, description));
+                            loadedGoals.Add(new Checklist());
                             break;
                         default:
                             Console.WriteLine($"Unknown goal type '{type}' found in file.");

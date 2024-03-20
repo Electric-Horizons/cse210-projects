@@ -9,26 +9,23 @@ public class SimpleGoal : Goal
 
     public override int MarkComplete()
     {
-        if (completed) {
-            return 0;
+        if (!completed)
+        {
+            completed = true;
+            Score += Points; // Increment score by points when completed
+            return Points;
         }
-        completed = true;
-        return Points;
+        return 0;
     }
 
     public override bool Complete()
-{
-    if (!completed)
     {
-        completed = true;
-        completedGoalsCount++; // Increment completed goals count
-        return true;
+        return completed;
     }
-    return false; // Goal already completed
-}
 
     public override void Display()
     {
-        Console.WriteLine($"Name: {Name}, Points: {Points}, Description: {Description}, Completed: {completed}");
+        var done = Complete() ? "X" : " ";
+        Console.WriteLine($"[{done}] {Name}, {Points}, ({Description}), Simple Goal");
     }
 }
